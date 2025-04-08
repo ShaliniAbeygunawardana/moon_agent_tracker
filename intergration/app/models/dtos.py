@@ -1,7 +1,15 @@
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 from datetime import datetime
 from uuid import UUID
 
+class IngesionRequest(BaseModel):
+    bucket_name: str
+    file_path: str
+    archive_path: Optional[str] = None
+    
+    
+## models of the agent
 class Agent(BaseModel):
     agent_id: str
     agent_code: str
@@ -29,4 +37,3 @@ class Product(BaseModel):
 class ProductUpdate(BaseModel):
     name: str
     description: str
-
