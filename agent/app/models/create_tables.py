@@ -2,7 +2,7 @@
 import sys
 import os
 
-sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/")
+sys.path.append("/app/")
 
 
 from sqlalchemy import create_engine
