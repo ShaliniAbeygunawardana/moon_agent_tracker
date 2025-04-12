@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fastapi-agent-service
+  name: agent-service
   labels:
-    app: fastapi-agent-service
+    app: agent-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fastapi-agent-service
+      app: agent-service
   template:
     metadata:
       labels:
-        app: fastapi-agent-service
+        app: agent-service
     spec:
       containers:
-      - name: fastapi-agent-service
-        image: kosalama/agent:latest
+      - name: agent-service
+        image: shaliniabeygunawardana/agent-service:latest
         ports:
         - containerPort: 8000
         env:
