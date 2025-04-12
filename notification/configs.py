@@ -1,0 +1,1 @@
+QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/123456789012/my-queue'
