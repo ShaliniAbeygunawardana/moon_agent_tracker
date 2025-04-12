@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/")
+sys.path.append("/app/")
 from fastapi import FastAPI
 from agent.app.controllers.controller import router
 
