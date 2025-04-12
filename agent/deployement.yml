@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-agent-service
+  labels:
+    app: fastapi-agent-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-agent-service
+  template:
+    metadata:
+      labels:
+        app: fastapi-agent-service
+    spec:
+      containers:
+      - name: fastapi-agent-service
+        image: kosalama/agent:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DB_USERNAME
+          value: "root"
+        - name: DB_PASSWORD
+          value: "example"
+        - name: DB_ENDPOINT
+          value: "host.minikube.internal"
+        - name: DB_NAME
+          value: "moon_agent"
