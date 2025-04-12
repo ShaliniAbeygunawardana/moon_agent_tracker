@@ -8,8 +8,8 @@ sys.path.append("/app/")
 from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy_utils import database_exists, create_database, drop_database
-from agent.app.models.db_models import init_db
-from agent.configs import DB_STRING
+from app.models.db_models import init_db
+from configs import DB_STRING
 import logging
 
 logger = logging.getLogger(__name__)

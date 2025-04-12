@@ -1,11 +1,11 @@
 from fastapi import APIRouter
-from agent.app.models.dtos import Agent, AgentUpdate, Product, ProductUpdate
+from app.models.dtos import Agent, AgentUpdate, Product, ProductUpdate
 from fastapi import Body
 from pydantic import BaseModel
 from typing import Annotated
-from agent.app.db_repository.sql_repoitory import SQLRepository, DatabaseOperationException \
+from app.db_repository.sql_repoitory import SQLRepository, DatabaseOperationException \
     , DataNotFoundException
-from agent.configs import DB_STRING
+from configs import DB_STRING
 from fastapi import HTTPException, status
 
 router = APIRouter()

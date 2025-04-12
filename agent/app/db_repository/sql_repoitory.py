@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from agent.app.models.dtos import Agent, AgentUpdate, Product, ProductUpdate
-from agent.app.models.db_models import Agent as DBAgent
-from agent.app.models.db_models import Product as DBProduct
+from app.models.dtos import Agent, AgentUpdate, Product, ProductUpdate
+from app.models.db_models import Agent as DBAgent
+from app.models.db_models import Product as DBProduct
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 
