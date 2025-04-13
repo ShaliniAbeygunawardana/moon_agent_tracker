@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: agent-service
-        image: shaliniabeygunawardana/agent-service:1.0.0
+        image: shaliniabeygunawardana/agent-service:1.0.1
         ports:
         - containerPort: 8000
         env:
