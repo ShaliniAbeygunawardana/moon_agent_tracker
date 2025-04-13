@@ -6,6 +6,7 @@ DB_ENDPOINT = os.getenv('DB_ENDPOINT', 'moon-agent-database.cu76c40m8t8k.us-east
 DB_NAME = os.getenv('DB_NAME', 'moon_agent')
 DB_STRING_CHECK = os.getenv('DB_STRING')
 
+
 if not DB_STRING_CHECK:
     os.environ["DB_STRING"] = f'mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_ENDPOINT}/{DB_NAME}'
 
