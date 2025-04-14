@@ -1,15 +1,15 @@
 import sys
-sys.path.append('/home/kosala/git-repos/moon_agent_tracker_test/')
+sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/intergration")
 from fastapi import APIRouter
-from intergration.app.models.dtos import IngesionRequest
+from app.models.dtos import IngesionRequest
 from fastapi import Body
 from pydantic import BaseModel
 from typing import Annotated
-from intergration.app.db_repository.sql_repository import SQLRepository, DatabaseOperationException \
+from app.db_repository.sql_repository import SQLRepository, DatabaseOperationException \
     , DataNotFoundException
-from intergration.app.services.service import IntergrationService
-from intergration.app.s3_repository.s3_service import S3Service, S3ServiceException
-from intergration.configs import DB_STRING
+from app.services.service import IntergrationService
+from app.s3_repository.s3_service import S3Service, S3ServiceException
+from configs import DB_STRING
 from fastapi import HTTPException, status
 
 router = APIRouter()
