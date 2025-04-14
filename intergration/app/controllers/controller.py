@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/intergration")
+sys.path.append("/app/")
 from fastapi import APIRouter
 from app.models.dtos import IngesionRequest
 from fastapi import Body
