@@ -1,8 +1,8 @@
 import sys
-sys.path.append('/home/kosala/git-repos/moon_agent_tracker_test/')
-from intergration.app.s3_repository.s3_service import S3Service, S3ServiceException
-from intergration.app.db_repository.sql_repository import SQLRepository, DatabaseOperationException
-from intergration.app.db_repository.sql_repository import DataNotFoundException
+sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/intergration")
+from app.s3_repository.s3_service import S3Service, S3ServiceException
+from app.db_repository.sql_repository import SQLRepository, DatabaseOperationException
+from app.db_repository.sql_repository import DataNotFoundException
 import logging
 import hashlib
 from intergration.configs import DOWNLOAD_DIR, DB_STRING
