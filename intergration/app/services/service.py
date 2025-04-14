@@ -5,7 +5,7 @@ from app.db_repository.sql_repository import SQLRepository, DatabaseOperationExc
 from app.db_repository.sql_repository import DataNotFoundException
 import logging
 import hashlib
-from intergration.configs import DOWNLOAD_DIR, DB_STRING
+from configs import DOWNLOAD_DIR, DB_STRING
 import os
 import pandas as pd
 
