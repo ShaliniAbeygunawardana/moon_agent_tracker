@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r"C:/Users/Shalini Imantha/moon_agent_tracker/intergration")
+sys.path.append("/app/")
 from app.s3_repository.s3_service import S3Service, S3ServiceException
 from app.db_repository.sql_repository import SQLRepository, DatabaseOperationException
 from app.db_repository.sql_repository import DataNotFoundException
