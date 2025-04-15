@@ -12,7 +12,7 @@ app = FastAPI(title="Corporate Notification Service")
 # SQLAlchemy setup
 DATABASE_URL = (
     "mssql+pyodbc://admin:nkol6056@"
-    "meditrackdb-sql.c1q2cm4givcj.us-east-1.rds.amazonaws.com:1433/meditrackDB?"
+    "moon-agent-database.cu76c40m8t8k.us-east-1.rds.amazonaws.com"
     "driver=ODBC+Driver+18+for+SQL+Server&Encrypt=yes&TrustServerCertificate=yes"
 )
 
