@@ -29,3 +29,13 @@ spec:
           value: "moon-agent-database.cu76c40m8t8k.us-east-1.rds.amazonaws.com"
         - name: DB_NAME
           value: "moon_agent"
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_SECRET_ACCESS_KEY

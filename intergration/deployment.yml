@@ -29,4 +29,12 @@ spec:
         - name: DB_NAME
           value: "moon_agent"
         - name: AWS_ACCESS_KEY_ID
-          value: "AKIAVRUVS3K4GGM2G4TP"
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_SECRET_ACCESS_KEY
