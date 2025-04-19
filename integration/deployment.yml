@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: integration-service
+  labels:
+    app: integration-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: integration-service
+  template:
+    metadata:
+      labels:
+        app: integration-service
+    spec:
+      containers:
+      - name: integration-service
+        image: shaliniabeygunawardana/integration-service:1.0.6
+        ports:
+        - containerPort: 8001
+        env:
+        - name: DB_USERNAME
+          value: "admin"
+        - name: DB_PASSWORD
+          value: "Sha1014*"
+        - name: DB_ENDPOINT
+          value: "moon-agent-database.cu76c40m8t8k.us-east-1.rds.amazonaws.com"
+        - name: DB_NAME
+          value: "moon_agent"
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-s3-credentials
+              key: AWS_SECRET_ACCESS_KEY
+        - name: DOWNLOAD_DIR
+          value: "/app/data/output/"
+
+
