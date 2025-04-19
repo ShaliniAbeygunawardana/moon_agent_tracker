@@ -1,19 +1,23 @@
-name: Deploy to Minikube Integration service
+name: Deploy to Minikube Integration Service
 
 on:
   workflow_dispatch:
     inputs:
       docker_tag:
-        description: 'Docker image tag (e.g. latest, v1.2.3) to deploy'
+        description: 'Docker image tag (e.g. latest, v1.2.3)'
         required: true
         default: 'latest'
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up SSH
@@ -21,19 +25,25 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-      - name: Pull latest changes and update image tag
+      - name: Pull latest code and update Docker image tag
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
             cd ~/moon_agent_tracker
             git pull
-            sed -i \"s|\(image:[[:space:]][^:]\):.*|\1:${{ github.event.inputs.docker_tag }}|\" integration/deployment.yml
-          "
 
-      - name: Deploy to Minikube via SSH
+            echo "Updating Docker image tag in integration/deployment.yml..."
+            sed -i 's|\(image:.*:\).*|\1${{ github.event.inputs.docker_tag }}|' integration/deployment.yml
+EOF
+
+      - name: Deploy to Minikube
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
             cd ~/moon_agent_tracker/integration
+
+            echo "Applying Kubernetes manifests..."
             kubectl apply -f deployment.yml
             kubectl apply -f service.yml
+
+            echo "Waiting for rollout to complete..."
             kubectl rollout status deployment/integration-service
-          "
+EOF
