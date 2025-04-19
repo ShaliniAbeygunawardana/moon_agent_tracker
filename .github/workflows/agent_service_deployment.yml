@@ -26,14 +26,14 @@ jobs:
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
             cd ~/moon_agent_tracker
             git pull
-            sed -i \"s|\(image:[[:space:]][^:]\):.*|\1:${{ github.event.inputs.docker_tag }}|\" agent/deployment.yaml
+            sed -i \"s|\(image:[[:space:]][^:]\):.*|\1:${{ github.event.inputs.docker_tag }}|\" agent/deployement.yaml
           "
 
       - name: Deploy to Minikube via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
             cd ~/moon_agent_tracker/agent
-            kubectl apply -f deployment.yaml
+            kubectl apply -f deployement.yaml
             kubectl apply -f service.yaml
             kubectl rollout status deployment/agent-service
           "
