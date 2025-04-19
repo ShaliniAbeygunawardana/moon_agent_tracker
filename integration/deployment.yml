@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: integration-service
-        image: shaliniabeygunawardana/integration-service:1.0.6
+        image: shaliniabeygunawardana/integration-service:1.0.2
         ports:
         - containerPort: 8001
         env:
