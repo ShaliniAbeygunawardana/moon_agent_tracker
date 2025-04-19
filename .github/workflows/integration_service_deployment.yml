@@ -32,8 +32,8 @@ jobs:
       - name: Deploy to Minikube via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
-            cd ~/moon_agent_tracker/agent
+            cd ~/moon_agent_tracker/integration
             kubectl apply -f deployment.yml
             kubectl apply -f service.yml
-            kubectl rollout status deployment/agent-service
+            kubectl rollout status deployment/integration-service
           "
