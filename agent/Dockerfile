@@ -5,7 +5,6 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy the requirements file into the container
-RUN ls -la
 COPY requirements.txt .
 
 # Install the dependencies
