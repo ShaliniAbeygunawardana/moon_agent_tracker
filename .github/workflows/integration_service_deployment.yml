@@ -1,23 +1,23 @@
-name: Deploy to Minikube Integration Service
+name: Deploy to Minikube Integration service
 
 on:
   workflow_dispatch:
     inputs:
       docker_tag:
-        description: 'Docker image tag (e.g. latest, v1.2.3)'
+        description: 'Docker image tag (e.g. latest, v1.2.3) to deploy'
         required: true
         default: 'latest'
 
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}       
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up SSH
@@ -25,25 +25,19 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-      - name: Pull latest code and update Docker image tag
+      - name: Pull latest changes and update image tag
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
             cd ~/moon_agent_tracker
             git pull
+            sed -i \"s|\(image:[[:space:]][^:]\):.*|\1:${{ github.event.inputs.docker_tag }}|\" integration/deployment.yml
+          "
 
-            echo "Updating Docker image tag in integration/deployment.yml..."
-            sed -i 's|\(image:.*:\).*|\1${{ github.event.inputs.docker_tag }}|' integration/deployment.yml
-EOF
-
-      - name: Deploy to Minikube
+      - name: Deploy to Minikube via SSH
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} "
             cd ~/moon_agent_tracker/integration
-
-            echo "Applying Kubernetes manifests..."
             kubectl apply -f deployment.yml
             kubectl apply -f service.yml
-
-            echo "Waiting for rollout to complete..."
             kubectl rollout status deployment/integration-service
-EOF
+          "
