@@ -12,4 +12,4 @@ if not DB_STRING_CHECK:
 
 DB_STRING = os.getenv('DB_STRING')   
 
-DOWNLOAD_DIR = os.getenv('DOWNLOAD_DIR', r"C:/Users/Shalini Imantha/moon_agent_tracker/intergration/data/output/") 
+DOWNLOAD_DIR = os.getenv('DOWNLOAD_DIR', "/app/data/output/") 
