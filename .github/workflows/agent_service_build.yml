@@ -1,7 +1,12 @@
 name: Build Image
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Image tag (e.g., v1.0.0, feature-branch, etc.)"
+        required: true
+        default: latest
 
 jobs:
   build:
@@ -24,7 +29,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/my-service:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/my-service:${{ github.event.inputs.image_tag }}
+            ${{ secrets.DOCKER_USERNAME }}/my-service:latest
 
       - name: Logout from Docker Hub
         run: docker logout
