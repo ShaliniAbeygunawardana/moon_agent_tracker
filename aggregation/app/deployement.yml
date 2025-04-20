@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: aggregation
-            image: your-docker-repo/aggregation:latest
+            image: shaliniabeygunawardana/aggregation:1.0.1
             imagePullPolicy: IfNotPresent
             env:
               - name: DB_STRING
