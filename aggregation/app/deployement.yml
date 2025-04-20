@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: aggregation-cronjob
+spec:
+  schedule: "30 4 * * *" # Runs daily at 10 AM; adjust as needed
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: aggregation
+            image: your-docker-repo/aggregation:latest
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: DB_STRING
+                valueFrom:
+                  secretKeyRef:
+                    name: db-credentials
+                    key: db_string
+              # Add other environment variables as needed
+              - name: DB_USERNAME
+                value: "root"
+              - name: DB_PASSWORD
+                value: "Sha1014*"
+              - name: DB_ENDPOINT
+                value: "host.minikube.internal"
+              - name: DB_NAME
+                value: "moon_agent"
+              - name: REDSHIFT_DB_USERNAME
+                value: "admin"
+              - name: REDSHIFT_DB_PASSWORD
+                value: "Sha1014*"
+              - name: REDSHIFT_DB_ENDPOINT
+                value: "default-workgroup.381492058808.us-east-1.redshift-serverless.amazonaws.com"
+              - name: REDSHIFT_DB_NAME
+                value: "dev"
+              
+          restartPolicy: OnFailure
