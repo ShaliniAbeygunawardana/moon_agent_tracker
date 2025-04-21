@@ -18,8 +18,8 @@ def run_aggregator():
         load_to_redshift(best_teams, "best_teams", redshift_conn)
 
         logger.info("Aggregating top products...")
-        top_products = get_top_products(rds_connection)
-        load_to_redshift(top_products, "top_products", redshift_conn)
+        target_achieved_products = get_top_products(rds_connection)
+        load_to_redshift(target_achieved_products, "target_achieved_products", redshift_conn)
 
         logger.info("Aggregating branch performance...")
         branch_performance = get_branch_performance(rds_connection)
