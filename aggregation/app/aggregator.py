@@ -1,8 +1,8 @@
 import sys
 sys.path.append("/app/")
-from aggregation.app.sps.db import RdsSession, get_redshift_conn
-from aggregation.app.sps.rds_provider import get_best_performing_teams, get_top_products, get_branch_performance
-from aggregation.app.sps.redshift_provider import load_to_redshift
+from app.sps.db import RdsSession, get_redshift_conn
+from app.sps.rds_provider import get_best_performing_teams, get_top_products, get_branch_performance
+from app.sps.redshift_provider import load_to_redshift
 import logging
 
 # Set up logging
