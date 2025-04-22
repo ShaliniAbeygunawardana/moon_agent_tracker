@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: aggregation
-            image: shaliniabeygunawardana/aggregation:1.0.1
+            image: shaliniabeygunawardana/aggregation:1.0.2
             imagePullPolicy: IfNotPresent
             env:
               - name: DB_STRING
