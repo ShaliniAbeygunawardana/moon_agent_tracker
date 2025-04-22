@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: aggregation-cronjob
 spec:
-  schedule: "10 18 * * *" # Runs daily at 10 AM; adjust as needed
+  schedule: "20 18 * * *" # Runs daily at 10 AM; adjust as needed
   jobTemplate:
     spec:
       template:
