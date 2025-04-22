@@ -11,9 +11,7 @@ app = FastAPI(title="Corporate Notification Service")
 
 # SQLAlchemy setup
 DATABASE_URL = (
-    "mssql+pyodbc://admin:nkol6056@"
     "moon-agent-database.cu76c40m8t8k.us-east-1.rds.amazonaws.com"
-    "driver=ODBC+Driver+18+for+SQL+Server&Encrypt=yes&TrustServerCertificate=yes"
 )
 
 engine = create_engine(DATABASE_URL)
