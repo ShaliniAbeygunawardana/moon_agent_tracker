@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: aggregation-cronjob
-            image: shaliniabeygunawardana/aggregation-cronjob:1.0.1
+            image: shaliniabeygunawardana/aggregation-cronjob:1.0.2
             ports:
             - containerPort: 8002
             imagePullPolicy: IfNotPresent
