@@ -3,14 +3,14 @@ kind: CronJob
 metadata:
   name: aggregation-cronjob
 spec:
-  schedule: "00 19 * * *" # Runs daily at 10 AM; adjust as needed
+  schedule: "20 14 * * *" # Runs daily at 10 AM; adjust as needed
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: aggregation
-            image: shaliniabeygunawardana/aggregation:1.0.4
+          - name: aggregation-cronjob
+            image: shaliniabeygunawardana/aggregation-cronjob:1.0.4
             ports:
             - containerPort: 8002
             imagePullPolicy: IfNotPresent
